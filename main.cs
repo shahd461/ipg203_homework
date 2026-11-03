@@ -116,6 +116,37 @@ namespace homework
 
             center.PrintAll();
             Console.WriteLine("Total cost: " + center.TotalRepaireCost());
-        }
+      
+      }
+        // ===== 3. Encapsulation (التغليف) =====
+
+// (Private Fields)  
+private readonly string _serialNumber;
+private string _name;
+private int _repairTime;
+private string _status;
+
+//  (Properties)
+public string SerialNumber => _serialNumber; //(Read-Only)
+
+public string Name
+{
+    get => _name;
+    set => _name = !string.IsNullOrEmpty(value) ? value : "جهاز غير معروف";
+}
+
+public int RepairTime
+{
+    get => _repairTime;
+    set => _repairTime = value >= 0 ? value : 0; 
+
+public string Status
+{
+    get => _status;
+    // جعل الـ set خاصاً لحماية الحالة من التعديل العشوائي الخارجي
+    private set => _status = value; 
+}
     }
+    
+    
 }
